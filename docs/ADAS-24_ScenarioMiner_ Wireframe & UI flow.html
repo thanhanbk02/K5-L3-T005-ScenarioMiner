@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScenarioMiner | ADAS-24</title>
+<style>
+:root{--ink:#172033;--muted:#697586;--line:#e5e9f0;--bg:#f4f6fa;--surface:#fff;--blue:#315efb;--blue-weak:#edf2ff;--green:#13865c;--green-bg:#e8f7f0;--amber:#a96508;--amber-bg:#fff4df;--red:#c23b4a;--red-bg:#fff0f1;--shadow:0 8px 28px rgba(22,34,58,.06);--radius:15px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 clamp(18px,4vw,56px);gap:36px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;min-width:220px}.logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#426cff,#2445cb);display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;box-shadow:0 5px 12px #315efb40}.brand strong{font-size:17px;letter-spacing:-.4px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}.nav{display:flex;align-self:stretch;gap:6px;flex:1}.nav button{border:0;background:none;color:#697586;padding:0 16px;border-bottom:2px solid transparent;font-weight:600;white-space:nowrap}.nav button:hover{color:var(--blue);background:#f8faff}.nav button.active{color:var(--blue);border-bottom-color:var(--blue)}.user{display:flex;align-items:center;gap:10px;color:#445066;font-size:12px;white-space:nowrap}.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#e9edff;color:#315efb;font-weight:700}.wrap{max-width:1440px;margin:0 auto;padding:30px clamp(18px,4vw,56px) 54px}.page{display:none;animation:fade .18s ease}.page.active{display:block}@keyframes fade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px}.eyebrow{font-size:11px;letter-spacing:1.4px;color:var(--blue);font-weight:800;text-transform:uppercase;margin-bottom:7px}.heading h1{font-size:27px;letter-spacing:-.8px;line-height:1.2;margin:0}.heading p{margin:7px 0 0;color:var(--muted)}.heading-actions{display:flex;gap:9px;align-items:center}.grid{display:grid;gap:18px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;min-width:0}.card h2,.card h3{margin:0;font-size:16px;letter-spacing:-.2px}.card-sub{color:var(--muted);font-size:12px;margin:5px 0 18px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label,.label{font-size:12px;font-weight:700;color:#4d596b}.control{width:100%;height:42px;border:1px solid #dce2eb;border-radius:9px;padding:0 12px;background:#fff;color:var(--ink);outline:none}.control:focus,textarea:focus{border-color:#7893ff;box-shadow:0 0 0 3px #315efb16}.checkrow{display:flex;gap:9px;flex-wrap:wrap}.check{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;padding:9px 12px;color:#3f4b5e;font-size:13px}.check input{accent-color:var(--blue)}.btn{height:40px;border-radius:9px;border:1px solid var(--line);padding:0 15px;background:#fff;color:#344054;font-weight:650;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn:hover{background:#f8faff;border-color:#c7d2fe}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 10px #315efb30}.btn.primary:hover{background:#244ce0}.btn.danger{color:var(--red);border-color:#f2c8ce}.btn.success{background:var(--green);border-color:var(--green);color:white}.btn:disabled{opacity:.45;cursor:not-allowed}.btn.small{height:32px;padding:0 10px;font-size:12px}.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:750;white-space:nowrap}.status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.s-green{background:var(--green-bg);color:var(--green)}.s-amber{background:var(--amber-bg);color:var(--amber)}.s-blue{background:var(--blue-weak);color:var(--blue)}.s-red{background:var(--red-bg);color:var(--red)}.metric{padding:18px 20px}.metric .metric-label{font-size:12px;color:var(--muted);font-weight:650}.metric strong{display:block;font-size:27px;letter-spacing:-1px;margin:6px 0 2px}.metric small{color:var(--muted);font-size:11px}.progress{height:8px;background:#edf0f5;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#315efb,#6f8cff);border-radius:20px;transition:width .3s}.steps{display:grid;gap:0;margin-top:18px}.step{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0f2f6}.step:last-child{border:0}.step-icon{width:28px;height:28px;border-radius:9px;background:#f0f3f8;color:#68758a;display:grid;place-items:center;font-size:12px;font-weight:800}.step.done .step-icon{background:var(--green-bg);color:var(--green)}.step.running .step-icon{background:var(--blue-weak);color:var(--blue)}.step-info{flex:1}.step-info strong{display:block;font-size:13px}.step-info small{color:var(--muted);font-size:11px}.step-state{font-size:11px;color:var(--muted)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:#758094;font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:750;padding:11px 12px;border-bottom:1px solid var(--line)}td{padding:13px 12px;border-bottom:1px solid #f0f2f6;color:#354155;font-size:13px}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafbfe}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}.muted{color:var(--muted)}.event-layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px}.event-list{display:grid;gap:8px;margin-top:15px}.event-item{border:1px solid var(--line);border-radius:11px;padding:13px;text-align:left;background:#fff;width:100%;color:inherit}.event-item.selected{border-color:#8ea4ff;background:#f5f7ff;box-shadow:0 0 0 2px #315efb12}.event-item strong{display:block;font-size:13px}.event-item small{display:block;color:var(--muted);margin-top:4px}.event-item .event-meta{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.filterbar{display:flex;gap:8px;flex-wrap:wrap}.filter{height:33px;padding:0 12px;border:1px solid var(--line);background:#fff;border-radius:99px;color:#657187;font-size:12px;font-weight:650}.filter.active{background:var(--blue-weak);border-color:#cbd6ff;color:var(--blue)}.visual{background:linear-gradient(180deg,#f7f9fc,#eef2f7);border:1px solid var(--line);border-radius:12px;min-height:205px;position:relative;overflow:hidden}.visual svg{width:100%;height:100%;min-height:205px;display:block}.param-table td,.param-table th{padding:9px 10px}.param-table input{width:76px;height:32px;border:1px solid #dce2eb;border-radius:7px;padding:0 7px}.review-list{display:grid;gap:8px}.review-item{padding:13px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}.review-item.selected{border-color:#91a5ff;background:#f5f7ff}.review-item strong{display:block}.review-item small{color:var(--muted)}textarea.control{height:auto;padding:10px;resize:vertical;min-height:80px}.library-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px}.filters{display:grid;gap:16px}.filters label{display:flex;gap:8px;align-items:center;font-size:13px;color:#536074}.filters input{accent-color:var(--blue)}.search-row{display:flex;gap:8px;margin-bottom:15px}.search-row input{flex:1}.chart{height:155px;display:flex;align-items:flex-end;gap:12px;padding:18px 20px 26px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#fbfcff,#f7f9fd)}.bar{flex:1;background:linear-gradient(180deg,#7892ff,#315efb);border-radius:6px 6px 2px 2px;position:relative;min-width:20px}.bar span{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--muted);white-space:nowrap}.bar b{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:10px;color:#536074}.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.notice{border:1px solid #dce5ff;background:#f5f8ff;color:#52627e;border-radius:10px;padding:12px 14px;font-size:12px}.toast{position:fixed;right:22px;bottom:22px;background:#172033;color:white;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px #10182830;opacity:0;transform:translateY(8px);transition:.2s;z-index:50;pointer-events:none}.toast.show{opacity:1;transform:none}.autosave{font-size:11px;color:#7b8798;display:flex;align-items:center;gap:6px}.autosave:before{content:"";width:6px;height:6px;background:#18a66a;border-radius:50%}
+@media(max-width:1000px){.topbar{gap:12px}.brand{min-width:auto}.user{display:none}.nav{overflow:auto}.nav button{padding:0 11px}.event-layout,.library-layout{grid-template-columns:1fr}.report-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.topbar{height:auto;min-height:66px;display:block;padding:12px 16px}.brand{margin-bottom:8px}.nav{height:43px}.nav button{padding:0 9px;font-size:12px}.wrap{padding:22px 14px 40px}.heading{align-items:flex-start;flex-direction:column}.heading h1{font-size:23px}.two,.three,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.report-grid{grid-template-columns:1fr 1fr}.card{padding:17px}.event-layout{grid-template-columns:1fr}.heading-actions{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="logo">S</div><div><strong>ScenarioMiner</strong><small>ADAS-24 · Scenario Intelligence</small></div></div>
+  <nav class="nav" aria-label="Điều hướng chính">
+    <button class="active" data-tab="ingest">01&nbsp; Nạp log</button>
+    <button data-tab="events">02&nbsp; Sự kiện</button>
+    <button data-tab="review">03&nbsp; Hàng duyệt</button>
+    <button data-tab="library">04&nbsp; Thư viện</button>
+    <button data-tab="report">05&nbsp; Báo cáo</button>
+  </nav>
+  <div class="user"><div class="avatar">SE</div><span>Kỹ sư kịch bản</span></div>
+</header>
+<main class="wrap">
+<section class="page active" id="page-ingest">
+  <div class="heading"><div><div class="eyebrow">Data pipeline / Workspace</div><h1>Nạp dữ liệu & chạy pipeline</h1><p>Khởi tạo một lần chạy phân tích từ tập dữ liệu trajectory.</p></div><div class="heading-actions"><span class="autosave" id="save-state">Tự động lưu trên trình duyệt</span></div></div>
+  <div class="grid two">
+    <article class="card">
+      <h2>Thiết lập đầu vào</h2><p class="card-sub">Chọn nguồn dữ liệu và phạm vi phát hiện.</p>
+      <div class="form-grid">
+        <div class="field full"><label for="source">Nguồn dữ liệu</label><select class="control persist" id="source"><option>Argoverse 2 Motion Forecasting — split val</option><option>Argoverse 2 Motion Forecasting — split train</option><option>Dataset nội bộ (đường dẫn)</option></select></div>
+        <div class="field full"><label for="folder">Thư mục chứa scenario</label><input class="control persist" id="folder" placeholder="Ví dụ: /data/av2/scenario/"></div>
+        <div class="field"><label for="limit">Số scenario tối đa</label><input class="control persist" id="limit" type="number" min="1" value="500"></div>
+        <div class="field"><label for="run-name">Tên lần chạy</label><input class="control persist" id="run-name" value="AV2 validation run 01"></div>
+        <div class="field full"><label>Loại tình huống cần phát hiện</label><div class="checkrow">
+          <label class="check"><input class="persist" type="checkbox" id="type-cutin" checked> Cut-in</label>
+          <label class="check"><input class="persist" type="checkbox" id="type-brake" checked> Phanh gấp</label>
+          <label class="check"><input class="persist" type="checkbox" id="type-ped" checked> Người đi bộ băng ngang</label>
+        </div></div>
+      </div>
+      <div class="btn-row"><button class="btn primary" id="run-pipeline">▶&nbsp; Chạy pipeline</button><button class="btn" id="reset-run">Đặt lại</button></div>
+    </article>
+    <article class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Tiến độ lần chạy</h2><span class="status s-blue" id="run-status">Sẵn sàng</span></div>
+      <p class="card-sub" id="run-id">Chưa có lần chạy mới · Chọn dữ liệu để bắt đầu</p>
+      <div class="progress"><span id="run-progress"></span></div><div style="display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--muted)"><span id="progress-label">0% hoàn tất</span><span id="progress-count">0 / 5 bước</span></div>
+      <div class="steps" id="pipeline-steps">
+        <div class="step"><div class="step-icon">1</div><div class="step-info"><strong>Đọc và chuẩn hóa log</strong><small>Load trajectory, kiểm tra schema và đồng bộ thời gian</small></div><span class="step-state">Chờ</span></div>
+        <div class="step"><div class="step-icon">2</div><div class="step-info"><strong>Tiền xử lý quỹ đạo</strong><small>Lọc nhiễu, xử lý missing values, chuẩn hóa track</small></div><span class="step-state">Chờ</span></div>
+        <div class="step"><div class="step-icon">3</div><div class="step-info"><strong>Phát hiện sự kiện</strong><small>Rule-based / model inference</small></div><span class="step-state">Chờ</span></div>
+        <div class="step"><div class="step-icon">4</div><div class="step-info"><strong>Trích tham số</strong><small>Thời gian, vận tốc, khoảng cách, TTC</small></div><span class="step-state">Chờ</span></div>
+        <div class="step"><div class="step-icon">5</div><div class="step-info"><strong>Sinh .xosc và chạy esmini</strong><small>Kiểm tra tính hợp lệ và sai số tái hiện</small></div><span class="step-state">Chờ</span></div>
+      </div>
+    </article>
+  </div>
+  <article class="card" style="margin-top:18px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div><h2>Các lần chạy gần đây</h2><p class="card-sub" style="margin-bottom:0">Lịch sử được giữ khi chuyển giữa các màn hình.</p></div><span class="status s-green">Workspace</span></div>
+    <div class="table-wrap"><table><thead><tr><th>Mã lần chạy</th><th>Tập log</th><th>Scenario</th><th>Sự kiện</th><th>Trạng thái</th></tr></thead><tbody id="run-history"><tr><td class="mono">RUN-AV2-024</td><td>AV2 · val</td><td>500</td><td>38</td><td><span class="status s-green">Hoàn tất</span></td></tr><tr><td class="mono">RUN-AV2-023</td><td>AV2 · val</td><td>300</td><td>24</td><td><span class="status s-green">Hoàn tất</span></td></tr></tbody></table></div>
+  </article>
+</section>
+
+<section class="page" id="page-events">
+  <div class="heading"><div><div class="eyebrow">Detection / Parameter extraction</div><h1>Sự kiện phát hiện</h1><p>Tra cứu sự kiện, kiểm tra quỹ đạo và hiệu chỉnh tham số logic.</p></div><span class="status s-blue">38 sự kiện trong RUN-AV2-024</span></div>
+  <div class="event-layout">
+    <article class="card">
+      <h2>Danh sách sự kiện</h2><p class="card-sub">Chọn sự kiện để xem chi tiết.</p>
+      <div class="filterbar" id="event-filters"><button class="filter active" data-filter="Tất cả">Tất cả</button><button class="filter" data-filter="Cut-in">Cut-in</button><button class="filter" data-filter="Phanh gấp">Phanh gấp</button><button class="filter" data-filter="Người đi bộ">Người đi bộ</button></div>
+      <input class="control" id="event-search" placeholder="⌕  Tìm theo mã scenario..." style="margin-top:13px">
+      <div class="event-list" id="event-list">
+        <button class="event-item selected" data-kind="Cut-in" data-id="EVT-001"><strong>Cut-in <span class="muted">· EVT-001</span></strong><small>Scenario SCN-AV2-0142 · t = 4.4–6.7 s</small><div class="event-meta"><span class="muted">Độ tin cậy 0.94</span><span class="status s-blue">Draft</span></div></button>
+        <button class="event-item" data-kind="Phanh gấp" data-id="EVT-002"><strong>Phanh gấp <span class="muted">· EVT-002</span></strong><small>Scenario SCN-AV2-0188 · t = 8.1–9.5 s</small><div class="event-meta"><span class="muted">Độ tin cậy 0.91</span><span class="status s-blue">Draft</span></div></button>
+        <button class="event-item" data-kind="Người đi bộ" data-id="EVT-003"><strong>Người đi bộ <span class="muted">· EVT-003</span></strong><small>Scenario SCN-AV2-0221 · t = 3.2–5.8 s</small><div class="event-meta"><span class="muted">Độ tin cậy 0.89</span><span class="status s-blue">Draft</span></div></button>
+        <button class="event-item" data-kind="Cut-in" data-id="EVT-004"><strong>Cut-in <span class="muted">· EVT-004</span></strong><small>Scenario SCN-AV2-0317 · t = 11.0–13.2 s</small><div class="event-meta"><span class="muted">Độ tin cậy 0.86</span><span class="status s-blue">Draft</span></div></button>
+      </div>
+    </article>
+    <div class="grid" style="align-content:start">
+      <article class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><h2 id="event-title">Chi tiết: Cut-in · EVT-001</h2><p class="card-sub" style="margin-bottom:0">Scenario SCN-AV2-0142 · Trạng thái: Draft</p></div><span class="status s-amber">Chờ kiểm chứng</span></div>
+        <div class="visual" style="margin-top:16px">
+          <svg viewBox="0 0 760 220" role="img" aria-label="Minh họa quỹ đạo xe"><defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#e1e7ef" stroke-width="1"/></pattern></defs><rect width="760" height="220" fill="url(#grid)"/><path d="M0 75H760M0 145H760" stroke="#c6ceda" stroke-width="2" stroke-dasharray="12 9"/><path d="M35 110 C180 110 250 110 360 110 S570 110 730 110" fill="none" stroke="#315efb" stroke-width="4" stroke-linecap="round"/><path d="M90 45 C210 45 260 45 330 55 S430 95 510 105 S620 110 710 110" fill="none" stroke="#e08a32" stroke-width="4" stroke-linecap="round"/><g fill="#315efb"><rect x="340" y="96" width="42" height="27" rx="6"/><rect x="640" y="96" width="42" height="27" rx="6"/></g><g fill="#e08a32"><rect x="480" y="91" width="42" height="27" rx="6"/></g><text x="18" y="18" fill="#66758b" font-size="11">TOP VIEW · TRAJECTORY PREVIEW</text><text x="690" y="205" fill="#66758b" font-size="10">time →</text></svg>
+        </div>
+      </article>
+      <div class="grid two">
+        <article class="card"><h3>Tham số kịch bản logic</h3><p class="card-sub">Giá trị trích xuất và khoảng cho phép.</p>
+          <div class="table-wrap"><table class="param-table"><thead><tr><th>Tham số</th><th>Trích được</th><th>Min</th><th>Max</th></tr></thead><tbody>
+            <tr><td>Thời điểm bắt đầu (s)</td><td>4.4</td><td><input class="persist" aria-label="Min thời điểm bắt đầu" value="3.0"></td><td><input class="persist" aria-label="Max thời điểm bắt đầu" value="6.0"></td></tr>
+            <tr><td>Thời gian đổi làn (s)</td><td>2.3</td><td><input class="persist" aria-label="Min thời gian đổi làn" value="1.5"></td><td><input class="persist" aria-label="Max thời gian đổi làn" value="3.5"></td></tr>
+            <tr><td>Khoảng cách ban đầu (m)</td><td>45</td><td><input class="persist" aria-label="Min khoảng cách ban đầu" value="25"></td><td><input class="persist" aria-label="Max khoảng cách ban đầu" value="60"></td></tr>
+            <tr><td>Tốc độ ego (m/s)</td><td>15</td><td><input class="persist" aria-label="Min tốc độ ego" value="10"></td><td><input class="persist" aria-label="Max tốc độ ego" value="22"></td></tr>
+          </tbody></table></div><p class="card-sub" style="margin:10px 0 0">Giá trị trích được là dữ liệu demo minh họa.</p>
+        </article>
+        <article class="card"><h3>Kiểm tra mô phỏng</h3><p class="card-sub">esmini validation</p><div style="border:1px solid var(--line);background:#f8fafc;border-radius:10px;padding:14px;margin:12px 0"><div style="font-size:12px;color:var(--muted)">Kết quả hiện tại</div><strong id="sim-result" style="display:block;font-size:17px;margin:4px 0">Chưa chạy</strong><small class="muted" id="sim-error">RMSE dọc: — · RMSE ngang: —</small></div><button class="btn" id="simulate">▷&nbsp; Chạy thử trong esmini</button><button class="btn primary" id="send-review" style="width:100%;margin-top:9px" disabled>Gửi duyệt</button><p class="card-sub" style="margin:10px 0 0">Chỉ gửi duyệt khi mô phỏng hợp lệ.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-review">
+  <div class="heading"><div><div class="eyebrow">Human-in-the-loop</div><h1>Hàng chờ duyệt</h1><p>Kiểm tra chất lượng scenario trước khi đưa vào thư viện chính thức.</p></div><span class="status s-amber" id="pending-count">3 kịch bản đang chờ</span></div>
+  <div class="event-layout" style="grid-template-columns:310px minmax(0,1fr)">
+    <article class="card"><h2>Danh sách chờ duyệt</h2><p class="card-sub">Chọn một kịch bản để kiểm tra.</p><div class="review-list" id="review-list">
+      <button class="review-item selected" data-scn="SCN-AV2-0142"><strong>Cut-in · SCN-AV2-0142</strong><small>Gửi bởi Data Engineer · 14/11/2026 09:42</small></button>
+      <button class="review-item" data-scn="SCN-AV2-0188"><strong>Phanh gấp · SCN-AV2-0188</strong><small>Gửi bởi ML Engineer · 14/11/2026 10:05</small></button>
+      <button class="review-item" data-scn="SCN-AV2-0221"><strong>Người đi bộ · SCN-AV2-0221</strong><small>Gửi bởi Scenario Engineer · 14/11/2026 10:26</small></button>
+    </div></article>
+    <article class="card" style="display:flex;flex-direction:column;gap:15px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><h2 id="review-title">Duyệt: Cut-in · SCN-AV2-0142</h2><p class="card-sub" style="margin:5px 0 0">Trạng thái: Pending · Detector v0.3.1</p></div><span class="status s-amber">Pending</span></div>
+      <div class="grid two">
+        <div><div class="label" style="margin-bottom:8px">Log gốc</div><div class="visual"><svg viewBox="0 0 400 170"><path d="M0 55H400M0 115H400" stroke="#c6ceda" stroke-width="2" stroke-dasharray="10 8"/><path d="M15 85H385" stroke="#315efb" stroke-width="4"/><path d="M30 35C130 35 180 38 230 80S330 85 385 85" fill="none" stroke="#e08a32" stroke-width="4"/><rect x="220" y="68" width="35" height="23" rx="5" fill="#e08a32"/><rect x="290" y="74" width="35" height="23" rx="5" fill="#315efb"/></svg></div></div>
+        <div><div class="label" style="margin-bottom:8px">Kịch bản tái hiện (esmini)</div><div class="visual"><svg viewBox="0 0 400 170"><path d="M0 55H400M0 115H400" stroke="#c6ceda" stroke-width="2" stroke-dasharray="10 8"/><path d="M15 85H385" stroke="#315efb" stroke-width="4"/><path d="M30 35C130 35 180 38 230 80S330 85 385 85" fill="none" stroke="#e08a32" stroke-width="4" stroke-dasharray="6 4"/><circle cx="235" cy="80" r="8" fill="#fff" stroke="#e08a32" stroke-width="3"/></svg></div></div>
+      </div>
+      <div class="grid two">
+        <div><h3 style="margin-bottom:8px">Tóm tắt kiểm chứng</h3><p class="muted" style="font-size:12px;margin:0 0 6px">• Tham số và khoảng cho phép: khớp 4/4</p><p class="muted" style="font-size:12px;margin:0 0 6px">• esmini: Hợp lệ · RMSE dọc 0.18 m · ngang 0.12 m</p><p class="muted" style="font-size:12px;margin:0">• Phiên bản ngưỡng phát hiện: v0.3.1</p></div>
+        <div class="field"><label for="review-reason">Lý do / ghi chú (bắt buộc khi yêu cầu sửa hoặc từ chối)</label><textarea class="control persist" id="review-reason" placeholder="Nhập nhận xét cho kỹ sư phụ trách..."></textarea><small class="muted">Ghi chú sẽ được lưu cùng quyết định duyệt.</small></div>
+      </div>
+      <div class="btn-row" style="margin-top:auto"><button class="btn success" id="approve">✓ Chấp nhận</button><button class="btn" id="request-change">↻ Yêu cầu sửa</button><button class="btn danger" id="reject">Từ chối</button></div>
+    </article>
+  </div>
+</section>
+
+<section class="page" id="page-library">
+  <div class="heading"><div><div class="eyebrow">Scenario repository</div><h1>Thư viện kịch bản</h1><p>Tra cứu các scenario đã được duyệt và sẵn sàng xuất vào bộ kiểm thử.</p></div><span class="status s-green">Chỉ đọc / Export</span></div>
+  <div class="library-layout">
+    <aside class="card filters"><div><h2>Bộ lọc</h2><p class="card-sub" style="margin-bottom:0">Thu hẹp danh sách scenario.</p></div>
+      <div><div class="label" style="margin-bottom:9px">Loại tình huống</div><label><input type="checkbox" class="lib-filter" value="Cut-in" checked> Cut-in</label><label><input type="checkbox" class="lib-filter" value="Phanh gấp" checked> Phanh gấp</label><label><input type="checkbox" class="lib-filter" value="Người đi bộ" checked> Người đi bộ băng ngang</label></div>
+      <div><div class="label" style="margin-bottom:9px">Trạng thái duyệt</div><label><input type="checkbox" class="lib-status" value="Đã duyệt" checked> Đã duyệt</label><label><input type="checkbox" class="lib-status" value="Chờ duyệt" checked> Chờ duyệt</label><label><input type="checkbox" class="lib-status" value="Bản nháp" checked> Bản nháp</label></div>
+      <div class="field"><label for="lib-tag">Tag</label><input class="control" id="lib-tag" placeholder="Ví dụ: highway, urban"></div>
+    </aside>
+    <article class="card"><div class="search-row"><input class="control" id="lib-search" placeholder="Tìm theo scenario ID hoặc loại tình huống..."><button class="btn primary" id="lib-search-btn">Tìm kiếm</button></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h2>Danh sách scenario</h2><span class="muted" id="lib-count">4 kịch bản</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Scenario ID</th><th>Loại</th><th>Tag</th><th>Duyệt</th><th>esmini</th><th>Tải về</th></tr></thead><tbody id="library-rows">
+        <tr data-kind="Cut-in" data-status="Đã duyệt"><td class="mono">SCN-AV2-0108</td><td>Cut-in</td><td>highway, merge</td><td><span class="status s-green">Đã duyệt</span></td><td><span class="status s-green">Hợp lệ</span></td><td><a href="#" class="download" data-file="SCN-AV2-0108.xosc">.xosc</a> · <a href="#" class="download" data-file="SCN-AV2-0108.xodr">.xodr</a></td></tr>
+        <tr data-kind="Phanh gấp" data-status="Đã duyệt"><td class="mono">SCN-AV2-0124</td><td>Phanh gấp</td><td>urban, lead-vehicle</td><td><span class="status s-green">Đã duyệt</span></td><td><span class="status s-green">Hợp lệ</span></td><td><a href="#" class="download" data-file="SCN-AV2-0124.xosc">.xosc</a> · <a href="#" class="download" data-file="SCN-AV2-0124.xodr">.xodr</a></td></tr>
+        <tr data-kind="Người đi bộ" data-status="Đã duyệt"><td class="mono">SCN-AV2-0139</td><td>Người đi bộ</td><td>crosswalk, urban</td><td><span class="status s-green">Đã duyệt</span></td><td><span class="status s-green">Hợp lệ</span></td><td><a href="#" class="download" data-file="SCN-AV2-0139.xosc">.xosc</a> · <a href="#" class="download" data-file="SCN-AV2-0139.xodr">.xodr</a></td></tr>
+        <tr data-kind="Cut-in" data-status="Đã duyệt"><td class="mono">SCN-AV2-0151</td><td>Cut-in</td><td>highway, adjacent-lane</td><td><span class="status s-green">Đã duyệt</span></td><td><span class="status s-green">Hợp lệ</span></td><td><a href="#" class="download" data-file="SCN-AV2-0151.xosc">.xosc</a> · <a href="#" class="download" data-file="SCN-AV2-0151.xodr">.xodr</a></td></tr>
+      </tbody></table></div><div class="notice" style="margin-top:16px">Chỉ kịch bản đã duyệt và vượt qua kiểm tra esmini mới được tải vào bộ kiểm thử chính thức. File trong bản demo là dữ liệu minh họa.</div>
+    </article>
+  </div>
+</section>
+
+<section class="page" id="page-report">
+  <div class="heading"><div><div class="eyebrow">Quality / Evaluation</div><h1>Báo cáo đánh giá</h1><p>Theo dõi chất lượng phát hiện, độ chính xác và khả năng tái hiện scenario.</p></div><div class="heading-actions"><label class="muted" for="report-run">Lần chạy</label><select class="control" id="report-run" style="width:210px"><option>RUN-AV2-024</option><option>RUN-AV2-023</option></select></div></div>
+  <div class="report-grid">
+    <article class="card metric"><div class="metric-label">Precision (tổng)</div><strong>91.4%</strong><small><span style="color:var(--green)">↑ 2.1%</span> so với lần chạy trước</small></article>
+    <article class="card metric"><div class="metric-label">Recall (tổng)</div><strong>87.8%</strong><small>Đánh giá trên tập có nhãn tay</small></article>
+    <article class="card metric"><div class="metric-label">Tỷ lệ xuất hợp lệ</div><strong>94.7%</strong><small>OpenSCENARIO + esmini</small></article>
+    <article class="card metric"><div class="metric-label">RMSE quỹ đạo</div><strong>0.18 / 0.12</strong><small>RMSE dọc / ngang (m)</small></article>
+  </div>
+  <div class="grid two" style="margin-top:18px">
+    <article class="card"><h2>Precision và Recall theo loại</h2><p class="card-sub">So sánh kết quả phát hiện với nhãn tay.</p><div class="table-wrap"><table><thead><tr><th>Loại</th><th>Nhãn tay</th><th>TP</th><th>FP</th><th>FN</th><th>Precision</th><th>Recall</th></tr></thead><tbody><tr><td>Cut-in</td><td>24</td><td>22</td><td>2</td><td>2</td><td>91.7%</td><td>91.7%</td></tr><tr><td>Phanh gấp</td><td>18</td><td>16</td><td>1</td><td>2</td><td>94.1%</td><td>88.9%</td></tr><tr><td>Người đi bộ</td><td>12</td><td>10</td><td>2</td><td>2</td><td>83.3%</td><td>83.3%</td></tr></tbody></table></div><p class="card-sub" style="margin:12px 0 0">Bộ nhãn tay demo: 54 scenario; cần được thay bằng kết quả thực nghiệm.</p></article>
+    <article class="card"><h2>Độ đa dạng scenario</h2><p class="card-sub">Số scenario theo nhóm tình huống.</p><div class="chart"><div class="bar" style="height:85%"><b>24</b><span>Cut-in</span></div><div class="bar" style="height:65%"><b>18</b><span>Phanh gấp</span></div><div class="bar" style="height:44%"><b>12</b><span>Pedestrian</span></div><div class="bar" style="height:30%"><b>8</b><span>Other</span></div></div><p class="card-sub" style="margin:24px 0 0">Phân bố minh họa từ tập scenario đã gán nhãn.</p></article>
+  </div>
+  <div class="grid two" style="margin-top:18px">
+    <article class="card"><h2>Thời gian xử lý</h2><p class="card-sub">Thời gian pipeline theo quy mô dữ liệu.</p><div class="chart"><div class="bar" style="height:28%"><b>18s</b><span>100</span></div><div class="bar" style="height:48%"><b>36s</b><span>250</span></div><div class="bar" style="height:72%"><b>61s</b><span>500</span></div><div class="bar" style="height:94%"><b>92s</b><span>750</span></div></div></article>
+    <article class="card"><h2>Ghi chú đánh giá</h2><p class="card-sub">Lưu nhận xét cho lần chạy đang chọn.</p><textarea class="control persist" id="report-notes" placeholder="Nhập nhận xét, giới hạn dữ liệu, vấn đề cần cải thiện..." style="min-height:115px"></textarea><div class="btn-row"><button class="btn primary" id="save-report">Lưu ghi chú</button><button class="btn" id="export-report">Xuất báo cáo CSV</button></div></article>
+  </div>
+</section>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+  const KEY='scenariominer.workspace.v2';
+  const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+  let state={tab:'ingest',simValid:false,runCount:0,history:[],decisions:{},selectedEvent:'EVT-001'};
+  try{state={...state,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+  function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
+  function save(){const fields={};$$('.persist').forEach(el=>{const k=el.id||el.getAttribute('aria-label');if(!k)return;fields[k]=el.type==='checkbox'?el.checked:el.value});state.fields=fields;state.tab=$('.nav button.active')?.dataset.tab||state.tab;try{localStorage.setItem(KEY,JSON.stringify(state));$('#save-state').textContent='Đã tự động lưu'}catch(e){$('#save-state').textContent='Không thể lưu tự động'}}
+  function restore(){Object.entries(state.fields||{}).forEach(([k,v])=>{const el=document.getElementById(k)||$(`[aria-label="${CSS.escape(k)}"]`);if(el){if(el.type==='checkbox')el.checked=v;else el.value=v}})}
+  function showTab(tab){$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+tab));state.tab=tab;save();window.scrollTo({top:0,behavior:'smooth'})}
+  $$('.nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+  document.addEventListener('input',e=>{if(e.target.matches('.persist'))save()});document.addEventListener('change',e=>{if(e.target.matches('.persist'))save()});
+  restore();showTab(state.tab||'ingest');
+  // Pipeline demo: a single page app keeps every tab mounted, while localStorage
+  // preserves form values and progress across refreshes.
+  let runTimer=null;
+  $('#run-pipeline').addEventListener('click',()=>{
+    if(runTimer)clearInterval(runTimer);
+    const steps=$$('.step',$('#pipeline-steps'));let idx=0;
+    state.runCount=(state.runCount||0)+1;const id='RUN-AV2-'+String(24+state.runCount).padStart(3,'0');
+    $('#run-id').textContent='Mã lần chạy: '+id+' · Đang xử lý dữ liệu';$('#run-status').className='status s-blue';$('#run-status').textContent='Đang chạy';
+    steps.forEach((s)=>{s.className='step';s.querySelector('.step-icon').textContent=steps.indexOf(s)+1;s.querySelector('.step-state').textContent='Chờ'});
+    $('#run-pipeline').disabled=true;let pct=0;
+    runTimer=setInterval(()=>{if(idx<steps.length){steps.forEach((s,i)=>{s.classList.toggle('done',i<idx);s.classList.toggle('running',i===idx);s.querySelector('.step-state').textContent=i<idx?'Xong':i===idx?'Đang chạy':'Chờ';s.querySelector('.step-icon').textContent=i<idx?'✓':i+1});pct=Math.round((idx/steps.length)*100);$('#run-progress').style.width=pct+'%';$('#progress-label').textContent=pct+'% hoàn tất';$('#progress-count').textContent=idx+' / 5 bước';idx++}else{clearInterval(runTimer);runTimer=null;$('#run-progress').style.width='100%';$('#progress-label').textContent='100% hoàn tất';$('#progress-count').textContent='5 / 5 bước';$('#run-status').className='status s-green';$('#run-status').textContent='Hoàn tất';$('#run-id').textContent='Mã lần chạy: '+id+' · 500 scenario · 38 sự kiện';$('#run-pipeline').disabled=false;const row=document.createElement('tr');row.innerHTML=`<td class="mono">${id}</td><td>AV2 · val</td><td>${Math.max(1,Number($('#limit').value)||500)}</td><td>38</td><td><span class="status s-green">Hoàn tất</span></td>`;$('#run-history').prepend(row);state.history.unshift(id);save();toast('Pipeline demo đã hoàn tất.');}}
+    ,650);
+  });
+  $('#reset-run').addEventListener('click',()=>{if(runTimer)clearInterval(runTimer);$('#run-progress').style.width='0';$('#progress-label').textContent='0% hoàn tất';$('#progress-count').textContent='0 / 5 bước';$('#run-status').className='status s-blue';$('#run-status').textContent='Sẵn sàng';$('#run-id').textContent='Chưa có lần chạy mới · Chọn dữ liệu để bắt đầu';$$('.step').forEach((s,i)=>{s.className='step';s.querySelector('.step-icon').textContent=i+1;s.querySelector('.step-state').textContent='Chờ'});$('#run-pipeline').disabled=false;toast('Đã đặt lại trạng thái pipeline')});
+  // Event filters and detail selection
+  let activeFilter='Tất cả';
+  $$('#event-filters .filter').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;$$('#event-filters .filter').forEach(x=>x.classList.toggle('active',x===b));filterEvents()}));
+  $('#event-search').addEventListener('input',filterEvents);
+  function filterEvents(){const q=$('#event-search').value.toLowerCase();$$('.event-item').forEach(el=>el.style.display=((activeFilter==='Tất cả'||el.dataset.kind===activeFilter)&&el.textContent.toLowerCase().includes(q))?'block':'none')}
+  $$('.event-item').forEach(el=>el.addEventListener('click',()=>{$$('.event-item').forEach(x=>x.classList.toggle('selected',x===el));state.selectedEvent=el.dataset.id;$('#event-title').textContent='Chi tiết: '+el.dataset.kind+' · '+el.dataset.id;state.simValid=false;$('#send-review').disabled=true;$('#sim-result').textContent='Chưa chạy';$('#sim-error').textContent='RMSE dọc: — · RMSE ngang: —';save()}));
+  $('#simulate').addEventListener('click',()=>{const b=$('#simulate');b.disabled=true;b.textContent='Đang kiểm tra...';$('#sim-result').textContent='Đang chạy esmini';setTimeout(()=>{b.disabled=false;b.textContent='▷ Chạy thử trong esmini';state.simValid=true;$('#sim-result').textContent='✓ Hợp lệ';$('#sim-result').style.color='var(--green)';$('#sim-error').textContent='RMSE dọc: 0.18 m · RMSE ngang: 0.12 m';$('#send-review').disabled=false;save();toast('Mô phỏng hợp lệ — có thể gửi duyệt')},1100)});
+  $('#send-review').addEventListener('click',()=>{if(!state.simValid)return;const id=state.selectedEvent==='EVT-001'?'SCN-AV2-0142':'SCN-AV2-0188';const item=document.createElement('button');item.className='review-item';item.dataset.scn=id;item.innerHTML='<strong>'+$('#event-title').textContent.replace('Chi tiết: ','')+'</strong><small>Vừa gửi · Chờ người duyệt</small>';$('#review-list').prepend(item);bindReviewItem(item);$('#pending-count').textContent=$$('.review-item').length+' kịch bản đang chờ';showTab('review');toast('Đã chuyển scenario sang hàng chờ duyệt')});
+  // Review decisions are reflected in the library; reason is mandatory for changes/rejection.
+  let selectedReview='SCN-AV2-0142';
+  function bindReviewItem(el){el.addEventListener('click',()=>{$$('.review-item').forEach(x=>x.classList.toggle('selected',x===el));selectedReview=el.dataset.scn;$('#review-title').textContent='Duyệt: '+el.querySelector('strong').textContent;save()})}
+  $$('.review-item').forEach(bindReviewItem);
+  function decide(kind){const reason=$('#review-reason').value.trim();if(kind!=='Đã duyệt'&&!reason){toast('Vui lòng nhập lý do trước khi gửi quyết định.');$('#review-reason').focus();return}state.decisions[selectedReview]={kind,reason};const item=$$('.review-item').find(x=>x.dataset.scn===selectedReview);if(item){item.remove();$('#pending-count').textContent=$$('.review-item').length+' kịch bản đang chờ'}if(kind==='Đã duyệt'){const tr=document.createElement('tr');tr.dataset.kind='Cut-in';tr.dataset.status='Đã duyệt';tr.innerHTML=`<td class="mono">${selectedReview}</td><td>Cut-in</td><td>reviewed, validated</td><td><span class="status s-green">Đã duyệt</span></td><td><span class="status s-green">Hợp lệ</span></td><td><a href="#" class="download" data-file="${selectedReview}.xosc">.xosc</a> · <a href="#" class="download" data-file="${selectedReview}.xodr">.xodr</a></td>`;$('#library-rows').prepend(tr);bindDownloads(tr)}$('#review-reason').value='';save();toast('Đã ghi nhận quyết định: '+kind)}
+  $('#approve').addEventListener('click',()=>decide('Đã duyệt'));$('#request-change').addEventListener('click',()=>decide('Yêu cầu sửa'));$('#reject').addEventListener('click',()=>decide('Từ chối'));
+  // Library filters/search/downloads
+  function filterLibrary(){const q=$('#lib-search').value.toLowerCase(),types=$$('.lib-filter:checked').map(x=>x.value),statuses=$$('.lib-status:checked').map(x=>x.value);let n=0;$$('#library-rows tr').forEach(r=>{const ok=types.includes(r.dataset.kind)&&statuses.includes(r.dataset.status)&&r.textContent.toLowerCase().includes(q);r.style.display=ok?'':'none';if(ok)n++});$('#lib-count').textContent=n+' kịch bản'}
+  $$('.lib-filter,.lib-status').forEach(x=>x.addEventListener('change',filterLibrary));$('#lib-search-btn').addEventListener('click',filterLibrary);$('#lib-search').addEventListener('input',filterLibrary);
+  function bindDownloads(root=document){$$('.download',root).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const file=a.dataset.file;const blob=new Blob([`<!-- Demo placeholder: ${file}. Actual OpenSCENARIO / OpenDRIVE export is generated by the backend pipeline. -->\n`],{type:'text/plain'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=file;link.click();URL.revokeObjectURL(url);toast('Đã tải file demo: '+file)}))}
+  bindDownloads();
+  // Report notes and export
+  $('#save-report').addEventListener('click',()=>{save();toast('Đã lưu ghi chú đánh giá')});
+  $('#export-report').addEventListener('click',()=>{const csv='Type,Manual labels,TP,FP,FN,Precision,Recall\nCut-in,24,22,2,2,91.7%,91.7%\nHard braking,18,16,1,2,94.1%,88.9%\nPedestrian,12,10,2,2,83.3%,83.3%\n';const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='scenariominer-evaluation.csv';a.click();URL.revokeObjectURL(url);toast('Đã xuất báo cáo CSV')});
+  $('#report-run').addEventListener('change',()=>toast('Đã chuyển báo cáo sang '+$('#report-run').value));
+})();
+</script>
+</body>
+</html>
